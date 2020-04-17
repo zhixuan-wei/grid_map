@@ -732,7 +732,7 @@ Position GridMap::getClosestPositionInMap(const Position& position) const {
 
 void GridMap::clear(const std::string& layer) {
   try {
-    data_.at(layer).setConstant(NAN);
+    data_.at(layer).setConstant(0.0);
   } catch (const std::out_of_range& exception) {
     throw std::out_of_range("GridMap::clear(...) : No map layer '" + layer + "' available.");
   }
@@ -746,7 +746,7 @@ void GridMap::clearBasic() {
 
 void GridMap::clearAll() {
   for (auto& data : data_) {
-    data.second.setConstant(NAN);
+    data.second.setConstant(0.0);
   }
 }
 
@@ -757,7 +757,7 @@ void GridMap::clearRows(unsigned int index, unsigned int nRows) {
   else
     layersToClear = layers_;
   for (auto& layer : layersToClear) {
-    data_.at(layer).block(index, 0, nRows, getSize()(1)).setConstant(NAN);
+    data_.at(layer).block(index, 0, nRows, getSize()(1)).setConstant(0.0);
   }
 }
 
@@ -768,7 +768,7 @@ void GridMap::clearCols(unsigned int index, unsigned int nCols) {
   else
     layersToClear = layers_;
   for (auto& layer : layersToClear) {
-    data_.at(layer).block(0, index, getSize()(0), nCols).setConstant(NAN);
+    data_.at(layer).block(0, index, getSize()(0), nCols).setConstant(0.0);
   }
 }
 
